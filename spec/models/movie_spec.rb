@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Movie, type: :model do
   context 'validations' do
-    subject { build(:movie) }
+    let(:user) { create(:user) }
+    subject { build(:movie, user: user) }
 
     it 'is valid with all attributes set' do
       expect(subject).to be_valid
@@ -18,12 +19,12 @@ RSpec.describe Movie, type: :model do
       expect(subject).to be_invalid
     end
 
-    it 'is invalid without accessability' do
+    it 'is invalid without accessibility' do
       subject.accessibility = nil
       expect(subject).to be_invalid
     end
 
-    it 'is invalid without the correct inclusion of 0 or 1 for accessability' do
+    it 'is invalid without the correct inclusion of 0 or 1 for accessibility' do
       subject.accessibility = 2
       expect(subject).to be_invalid
     end
