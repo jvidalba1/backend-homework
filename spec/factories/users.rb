@@ -4,6 +4,6 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     birthday { Faker::Date.birthday }
     email { Faker::Internet.email }
-    password_digest { Faker::Internet.password }
+    password { "BackendHomework!" }
   end
 end

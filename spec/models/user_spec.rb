@@ -46,5 +46,29 @@ RSpec.describe User, type: :model do
 
       expect(subject).to be_invalid
     end
+
+    it 'is invalid without one lower letter in password' do
+      subject.password = 'ABCDEFGHIJ!'
+
+      expect(subject).to be_invalid
+    end
+
+    it 'is invalid without one upper letter in password' do
+      subject.password = 'abcdefghij!'
+
+      expect(subject).to be_invalid
+    end
+
+    it 'is invalid without one special character (!,@,#,? or ]) in password' do
+      subject.password = 'AbcdefghiJ'
+
+      expect(subject).to be_invalid
+    end
+
+    it 'is invalid with less than 10 characters in password' do
+      subject.password = 'ABCabc!'
+
+      expect(subject).to be_invalid
+    end
   end
 end
