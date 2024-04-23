@@ -1,9 +1,17 @@
 FactoryBot.define do
   factory :movie do
-    user { nil }
-    name { "MyString" }
-    producer { "MyString" }
-    accessibility { 1 }
-    released_date { "2024-04-23" }
+    association :user
+    name { Faker::Movie.title }
+    producer { Faker::Name.name }
+    accessibility { [0,1].sample }
+    released_date { Faker::Date.backward }
+
+    trait :private do
+      accessibility { 1 }
+    end
+
+    trait :public do
+      accessibility { 0 }
+    end
   end
 end
