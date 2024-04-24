@@ -1,5 +1,6 @@
 module RequestHelpers
   def json_response
-    JSON.parse(response.body)
+    resp = JSON.parse(response.body).with_indifferent_access
+    resp[:data]
   end
 end
