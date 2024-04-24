@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  context 'Validations' do
+  describe 'Validations' do
     subject {
       build(:user)
     }

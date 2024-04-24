@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Movie, type: :model do
-  context 'validations' do
+  describe 'Validations' do
     let(:user) { create(:user) }
     subject { build(:movie, user: user) }
 
