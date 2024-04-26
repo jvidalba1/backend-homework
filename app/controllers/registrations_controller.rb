@@ -3,10 +3,9 @@ class RegistrationsController < ApplicationController
     user = User.new(user_params)
 
     if user.save
-      # ToDo: Add serializations to json responses
       render json: { data: { user: user } }, status: :created
     else
-      render json: { data: { errors: user.errors.full_messages } }, status: :bad_request
+      render json: { errors: user.errors.full_messages }, status: :bad_request
     end
   end
 
