@@ -140,3 +140,25 @@ PUT "localhost:3000/movies/<id_movie>"
     }
 }
 ```
+
+
+### Random number 
+
+Get a random number, you can specify min and max values,
+or just get a full random number
+
+You don't any token here.
+
+GET "localhost:3000/random"
+```json
+{
+    "min": 5,
+    "max": 10
+}
+```
+
+GET "localhost:3000/random"
+```json
+{
+}
+```
