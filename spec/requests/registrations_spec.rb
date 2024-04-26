@@ -12,7 +12,7 @@ RSpec.describe RegistrationsController, type: :request do
 
       it 'returns the object created' do
         post '/registrations', params: user_attributes
-        expect(json_response[:user][:first_name]).to eq(user_attributes[:user][:first_name])
+        expect(json_response[:data][:user][:first_name]).to eq(user_attributes[:user][:first_name])
       end
     end
 
@@ -21,31 +21,14 @@ RSpec.describe RegistrationsController, type: :request do
         user_attributes[:user][:email] = ''
       end
 
-      it 'returns http status bad request' do
-        post '/registrations', params: user_attributes
-        expect(response).to have_http_status(:bad_request)
-      end
-
-      it 'returns error messages for email presence' do
-        post '/registrations', params: user_attributes
-        expect(json_response[:errors]).to include("Email can't be blank")
-      end
+      it_behaves_like 'registrations failure response', "Email can't be blank"
     end
 
     context 'when email does not have a right format' do
       before do
         user_attributes[:user][:email] = 'testingOelo.com'
       end
-
-      it 'returns http status bad request' do
-        post '/registrations', params: user_attributes
-        expect(response).to have_http_status(:bad_request)
-      end
-
-      it 'returns error message for wrong format email' do
-        post '/registrations', params: user_attributes
-        expect(json_response[:errors]).to include('Email is invalid')
-      end
+      it_behaves_like 'registrations failure response', 'Email is invalid'
     end
 
     context 'when email is already taken' do
@@ -54,15 +37,7 @@ RSpec.describe RegistrationsController, type: :request do
         user_attributes[:user][:email] = old_user.email
       end
 
-      it 'returns http status bad request' do
-        post '/registrations', params: user_attributes
-        expect(response).to have_http_status(:bad_request)
-      end
-
-      it 'returns error message for wrong format email' do
-        post '/registrations', params: user_attributes
-        expect(json_response[:errors]).to include('Email has already been taken')
-      end
+      it_behaves_like 'registrations failure response', 'Email has already been taken'
     end
 
     context 'when password is not sent' do
@@ -70,15 +45,7 @@ RSpec.describe RegistrationsController, type: :request do
         user_attributes[:user][:password] = nil
       end
 
-      it 'returns http status bad request' do
-        post '/registrations', params: user_attributes
-        expect(response).to have_http_status(:bad_request)
-      end
-
-      it 'returns error message for password presence' do
-        post '/registrations', params: user_attributes
-        expect(json_response[:errors]).to include("Password can't be blank")
-      end
+      it_behaves_like 'registrations failure response', "Password can't be blank"
     end
 
     context 'when password does not fit the format' do
@@ -86,15 +53,7 @@ RSpec.describe RegistrationsController, type: :request do
         user_attributes[:user][:password] = "testing!"
       end
 
-      it 'returns http status bad request' do
-        post '/registrations', params: user_attributes
-        expect(response).to have_http_status(:bad_request)
-      end
-
-      it 'returns error message for password presence' do
-        post '/registrations', params: user_attributes
-        expect(json_response[:errors]).to include('Password is invalid')
-      end
+      it_behaves_like 'registrations failure response', 'Password is invalid'
     end
   end
 end
