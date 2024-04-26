@@ -37,6 +37,7 @@ gem "rack-cors"
 gem 'rspec', '~> 3.0'
 gem 'jwt'
 gem 'cancancan'
+gem 'kaminari'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

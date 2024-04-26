@@ -57,14 +57,3 @@ end
     released_date: Faker::Date.backward
   )
 end
-
-# MUST ToDos:
-# - Pagination
-# - Missing tests
-# - Readme
-# - Serialization responses
-
-# NICE TO HAVE ToDos:
-# - Heroku deployment
-# - Documentation (apps?)
-# - Endpoint that requires server to retrieve a random number from a public API and send it back to the user

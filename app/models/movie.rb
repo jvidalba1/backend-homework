@@ -1,4 +1,6 @@
 class Movie < ApplicationRecord
+  paginates_per 3
+
   belongs_to :user
 
   scope :for_all, -> { where(accessibility: 1) }

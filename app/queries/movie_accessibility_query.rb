@@ -1,11 +1,15 @@
 class MovieAccessibilityQuery
-  def initialize(filter, user)
+  def initialize(filter, user, options = {})
     @filter = filter ||= 'public'
     @user = user
+    @options = options
   end
 
   def call
-    return Movie.for_all if @filter == 'public'
-    return @user.movies if @filter == 'private'
+    page = @options[:page] || 1
+    page_size = @options[:page_size]
+
+    return Movie.for_all.page(page).per(page_size) if @filter == 'public'
+    return @user.movies.page(page).per(page_size) if @filter == 'private'
   end
 end
