@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Backend Homework with Movies topic
 
-Things you may want to cover:
+- Ruby version: 3.1.2
+- Rails version: 7.1.3.2
 
-* Ruby version
+## Installation
 
-* System dependencies
+- Clone this repository in your local machine
+- Go to the folder cloned
+- Install dependencies gems
+- Setup database
+- Create seed data
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+git clone <repo_url>
+cd <project_folder>
+bundle install
+rails db:create
+rails db:migrate
+rails db:seed
+```
