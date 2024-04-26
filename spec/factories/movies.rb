@@ -7,7 +7,7 @@ FactoryBot.define do
 
     association :user
 
-    trait :self do
+    trait :for_self do
       accessibility { 0 }
     end
 
