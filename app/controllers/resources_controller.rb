@@ -4,7 +4,7 @@ class ResourcesController < ApplicationController
   before_action :authorize_user
 
   def not_found
-    render json: { errors: 'Not found error' }, status: :not_found
+    render json: { errors: 'Record not found' }, status: :not_found
   end
 
   def access_denied

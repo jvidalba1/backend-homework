@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :movie do
     name { Faker::Movie.title }
     producer { Faker::Name.name }
-    accessibility { [0,1].sample }
+    accessibility { ['for_all','self'].sample }
     released_date { Faker::Date.backward }
 
     association :user

@@ -1,6 +1,6 @@
 class Resources::MoviesController < ResourcesController
   def index
-    movies = MovieAccessibilityQuery.new(filter_params[:accessibility], current_user).call
+    movies = MovieAccessibilityQuery.new(params[:accessibility], current_user).call
     render json: { data: { movies: movies } }, status: :ok
   end
 
@@ -10,7 +10,7 @@ class Resources::MoviesController < ResourcesController
     if movie.save
       render json: { data: { movie: movie } }, status: :created
     else
-      render json: { errors: 'Movie was not saved. Verify info.' }, status: :bad_request
+      render json: { errors: movie.errors.full_messages }, status: :bad_request
     end
   end
 
@@ -24,7 +24,7 @@ class Resources::MoviesController < ResourcesController
     if movie.update(movie_params)
       render json: { data: { movie: movie } }, status: :ok
     else
-      render json: { errors: 'Movie was not updated. Verify info.' }, status: :bad_request
+      render json: { errors: movie.errors.full_messages }, status: :bad_request
     end
   end
 
@@ -32,9 +32,5 @@ class Resources::MoviesController < ResourcesController
 
   def movie_params
     params.require(:movie).permit(:name, :producer, :accessibility, :released_date)
-  end
-
-  def filter_params
-    params.require(:filter).permit(:accessibility)
   end
 end

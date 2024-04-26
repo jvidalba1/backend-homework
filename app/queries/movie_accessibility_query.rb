@@ -1,6 +1,6 @@
 class MovieAccessibilityQuery
-  def initialize(filter='public', user)
-    @filter = filter
+  def initialize(filter, user)
+    @filter = filter ||= 'public'
     @user = user
   end
 
