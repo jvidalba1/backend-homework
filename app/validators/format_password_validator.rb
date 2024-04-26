@@ -4,7 +4,6 @@ class FormatPasswordValidator < ActiveModel::EachValidator
 
   def validate_each(record, attribute, value)
     unless value =~ PASSWORD_REGEX
-      # record.errors[attribute] << (options[:message] || 'is invalid')
       record.errors.add(attribute, 'is invalid')
     end
   end
